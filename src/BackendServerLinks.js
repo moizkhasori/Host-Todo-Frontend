@@ -1,4 +1,4 @@
-export const mainURL = "http://localhost:4000/api/v1"
+export const mainURL = "https://host-todo-backend.onrender.com/api/v1"
 export const usersURL = "/users"
 export const tasksURL = "/tasks"
 

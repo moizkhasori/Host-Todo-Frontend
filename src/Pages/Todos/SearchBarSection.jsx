@@ -47,7 +47,8 @@ const SearchBarSection = ({ openBigCard, cardsInGrid, setCardsInGrid }) => {
   }, [priority, status, resetFunctionalityTrack]);
 
   const fetchTasksonFilters = async () => {
-    let filterSTR = "?";
+    try {
+      let filterSTR = "?";
 
     if (priority.toLocaleLowerCase() !== "priority") {
       filterSTR += `priority=${priority}&`;
@@ -65,6 +66,9 @@ const SearchBarSection = ({ openBigCard, cardsInGrid, setCardsInGrid }) => {
       setResetFunctionalityTrack(false);
     } else {
       setResetFunctionalityTrack(true);
+    }
+    } catch (error) {
+      console.log(error.response?.data?.message || error.mesage);
     }
   };
 

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { setUser } from "../../Redux/User/userSlice";
 import Loader from "../Loader";
+import { RegisterUserURL } from "../../BackendServerLinks";
 
 const IndexSignup = () => {
   const dispatch = useDispatch();
@@ -35,13 +36,13 @@ const IndexSignup = () => {
       setInternalLoading(true);
       setInternalError(null);
       const user = await axios.post(
-        "http://localhost:4000/api/v1/users/signup",
+        RegisterUserURL,
         { fullname, email, password },
         { withCredentials: true }
       );
       dispatch(setUser(user.data.user));
     } catch (error) {
-      setInternalError(error.response.data.message);
+      setInternalError(error.response?.data?.message || error.message);
     } finally {
       setInternalLoading(false);
     }
